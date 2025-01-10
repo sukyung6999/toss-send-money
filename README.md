@@ -8,3 +8,6 @@
 
 ## DAY2 (25.1.7)
 - 송금 금액 및 키패드 [작업 내용](https://cottony-slope-8c1.notion.site/174effd284f580ddbacbe8fe8cd831b3?pvs=74)
+
+## DAY3 (25.1.10)
+- 받을 분에 대한 정보 결정하기 

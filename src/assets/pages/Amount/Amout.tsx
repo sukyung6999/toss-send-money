@@ -49,7 +49,7 @@ const Amount = () => {
         onDelete={handleDelete}
       />
     <div>
-      <Button onClick={() => navigate('/receive')} className="block mt-[30px] w-full h-[50px] bg-blue-600 rounded-md text-white">보내기</Button>
+      <Button onClick={() => navigate(`/receive?amount=${amount}`)} className="block mt-[30px] w-full h-[50px] bg-blue-600 rounded-md text-white">보내기</Button>
     </div>
   </div>
 }
