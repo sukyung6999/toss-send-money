@@ -7,13 +7,12 @@ import { useState } from "react";
 const Receive = () => {
   const [searchParams] = useSearchParams();
   const amount = searchParams.get('amount');
+  const selectedTabStyle = 'border-solid border-black border-b-[1px]'
 
   const [selectedTab, setSelectedTab] = useState('recentTab');
   const handleTabBtnClick = (id: string) => {
     setSelectedTab(id);
   }
-
-  const selectedTabStyle = 'border-solid border-black border-b-[1px]'
 
   return <div>
     <Header title={`${amount ? ThousandsSeperator(amount) : '0'}원 받는 분 입력`} />
