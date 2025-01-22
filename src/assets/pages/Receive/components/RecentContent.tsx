@@ -1,6 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import Button from "../../../components/Button";
 import { getRecentAccountList } from "../../../../api/receive.api";
+import { RecentAccountType } from "../../../../types/receive";
 
 const RecentContent = () => {
   const userId = import.meta.env.VITE_USER_ID;
@@ -10,15 +11,15 @@ const RecentContent = () => {
   })
   console.log(data);
   return <ul>
-  <li>
+    {data.map((ele: RecentAccountType) => <li>
     <Button>
-      고모부
-      농협 
+      {ele.name}
+      {ele.bank} {ele.account}
     </Button>
     <Button>
       즐겨찾기
     </Button>
-  </li>
+  </li>)}
 </ul>
 }
 export default RecentContent;
