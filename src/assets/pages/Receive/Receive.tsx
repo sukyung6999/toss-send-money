@@ -3,6 +3,7 @@ import Header from "../../layout/Header";
 import ThousandsSeperator from "../../util/ThousandsSeperator";
 import Button from "../../components/Button";
 import { useState } from "react";
+import RecentContent from "./components/RecentContent";
 
 const Receive = () => {
   const [searchParams] = useSearchParams();
@@ -22,53 +23,7 @@ const Receive = () => {
       <Button onClick={() => handleTabBtnClick('contactTab')} className={`w-1/3 h-[50px] ${selectedTab === 'contactTab' ? selectedTabStyle : ''}`} role="tab" aria-controls="contactContent" aria-selected={selectedTab === 'contactTab' ? true : false} id="contactTab" tabIndex={selectedTab === 'contactTab' ? 1 : 0}>연락처</Button>
     </div>
     <div id="recentContent" role="tabpanel" aria-labelledby="recentTab" className={`${selectedTab === 'recentTab' ? 'block' : 'hidden'}`} >
-      <ul>
-        <li>
-          <Button>
-            고모부
-            농협 
-          </Button>
-          <Button>
-            즐겨찾기
-          </Button>
-        </li>
-        <li>
-          <Button>
-            고모
-            신한 
-          </Button>
-          <Button>
-            즐겨찾기
-          </Button>
-        </li>
-        <li>
-          <Button>
-            친구1
-            010-000-0000 
-          </Button>
-          <Button>
-            즐겨찾기
-          </Button>
-        </li>
-        <li>
-          <Button>
-            박비바
-            KB국민 
-          </Button>
-          <Button>
-            즐겨찾기
-          </Button>
-        </li>
-        <li>
-          <Button>
-            이퍼블
-            010-0000-0000 
-          </Button>
-          <Button>
-            즐겨찾기
-          </Button>
-        </li>
-      </ul>
+      <RecentContent/>
     </div>
     <div id="accountContent" role="tabpanel" aria-labelledby="accountTab" className={`${selectedTab === 'accountTab' ? 'block' : 'hidden'}`}  >
       <form action="">
