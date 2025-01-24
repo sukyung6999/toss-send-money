@@ -1,7 +1,17 @@
+const baseURL = import.meta.env.VITE_API_BASE_URL
+
 export const getRecentAccountList = (id: number) => {
-  return fetch(`http://localhost:3000/receive/recent?id=${id}`).then(res => {
+  return fetch(`${baseURL}/receive/recent?id=${id}`).then(res => {
     if (!res.ok) throw new Error('최근 송금한 계좌 목록을 불러오는데 실패했습니다')
 
     return res.json();
+  })
+}
+
+export const getContactAccountList = (id: number) => {
+  return fetch(`${baseURL}/receive/contact?id=${id}`).then(res => {
+    if (!res.ok) throw new Error('나의 연락처 목록을 불러오는데 실패했습니다')
+
+      return res.json();
   })
 }
