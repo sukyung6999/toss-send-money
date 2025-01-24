@@ -4,6 +4,7 @@ import ThousandsSeperator from "../../util/ThousandsSeperator";
 import Button from "../../components/Button";
 import { useState } from "react";
 import RecentContent from "./components/RecentContent";
+import ContactContent from "./components/ContactContent";
 
 const Receive = () => {
   const [searchParams] = useSearchParams();
@@ -53,26 +54,7 @@ const Receive = () => {
     </div>
     <div id="contactContent" role="tabpanel" aria-labelledby="contactTab" className={`${selectedTab === 'contactTab' ? 'block' : 'hidden'}`}  >
       <input type="search" name="contact" id="contactList" placeholder="연락처를 검색하거나 입력할 수 있습니다" className="block" />
-      <ul aria-label="연락처 목록">
-        <li>
-          <button type="submit">오빠1 010-000-0000</button>
-        </li>
-        <li>
-          <button type="submit">친구1 010-000-0000</button>
-        </li>
-        <li>
-          <button type="submit">친구2 010-000-0000</button>
-        </li>
-        <li>
-          <button type="submit">친구3 010-000-0000</button>
-        </li>
-        <li>
-          <button type="submit">친구4 010-000-0000</button>
-        </li>
-        <li>
-          <button type="submit">친구5 010-000-0000</button>
-        </li>
-      </ul>
+      <ContactContent/>
     </div>
   </div>
 }

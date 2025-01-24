@@ -11,7 +11,7 @@ const RecentContent = () => {
   })
   console.log(data);
   return <ul>
-    {data.map((ele: RecentAccountType) => <li>
+    {data?.map((ele: RecentAccountType) => <li key={ele.id}>
     <Button>
       {ele.name}
       {ele.bank} {ele.account}
