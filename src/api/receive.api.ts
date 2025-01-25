@@ -15,3 +15,10 @@ export const getContactAccountList = (id: number) => {
       return res.json();
   })
 }
+
+export const getBanksList = () => {
+  return fetch(`${baseURL}/banks`).then(res => {
+    if (!res.ok) throw new Error('은행 목록을 불러오는데 실패했습니다')
+    return res.json();
+  })
+}
