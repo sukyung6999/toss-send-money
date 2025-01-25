@@ -1,10 +1,11 @@
 import { useSearchParams } from "react-router-dom";
-import Header from "../../layout/Header";
-import ThousandsSeperator from "../../util/ThousandsSeperator";
-import Button from "../../components/Button";
 import { useState } from "react";
+import Button from "../../components/Button";
+import Header from "../../layout/Header";
 import RecentContent from "./components/RecentContent";
 import ContactContent from "./components/ContactContent";
+import AccountInputContent from "./components/AccountInputContent";
+import ThousandsSeperator from "../../util/ThousandsSeperator";
 
 const Receive = () => {
   const [searchParams] = useSearchParams();
@@ -27,30 +28,7 @@ const Receive = () => {
       <RecentContent/>
     </div>
     <div id="accountContent" role="tabpanel" aria-labelledby="accountTab" className={`${selectedTab === 'accountTab' ? 'block' : 'hidden'}`}  >
-      <form action="">
-        <select name="bank" id="bankList">
-          <option value="은행선택">은행선택</option>
-          <option value="NH농협">NH농협</option>
-          <option value="카카오뱅크">카카오뱅크</option>
-          <option value="KB국민">KB국민</option>
-          <option value="토스뱅크">토스뱅크</option>
-          <option value="신한">신한</option>
-          <option value="우리">우리</option>
-          <option value="IBK기업">IBK기업</option>
-          <option value="하나">하나</option>
-          <option value="새마을">새마을</option>
-          <option value="부산">부산</option>
-          <option value="iM뱅크(대구)">iM뱅크(대구)</option>
-          <option value="케이뱅크">케이뱅크</option>
-          <option value="신협">신협</option>
-          <option value="우체국">우체국</option>
-          <option value="SC제일">SC제일</option>
-          <option value="경남">경남</option>
-          <option value="광주">광주</option>
-        </select>
-        <input type="tel" name="accountnumer" id="accountNum" placeholder="계좌번호 입력" pattern="[0-9]-*" inputMode="numeric" maxLength={14} />
-        <button>확인</button>
-      </form>
+      <AccountInputContent/>
     </div>
     <div id="contactContent" role="tabpanel" aria-labelledby="contactTab" className={`${selectedTab === 'contactTab' ? 'block' : 'hidden'}`}  >
       <input type="search" name="contact" id="contactList" placeholder="연락처를 검색하거나 입력할 수 있습니다" className="block" />

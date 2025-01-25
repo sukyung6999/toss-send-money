@@ -11,3 +11,8 @@ export type ContactAccountType = {
   name: string,
   tel: string
 }
+
+export type BankCodeType = {
+  code: string,
+  name: string
+}
