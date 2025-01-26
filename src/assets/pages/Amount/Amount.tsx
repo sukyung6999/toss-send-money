@@ -47,7 +47,7 @@ const Amount = () => {
     setData({
       amount
     })
-    navigate(`/receive?amount=${amount}`)
+    navigate(`/receive`)
   }
 
   return <div>

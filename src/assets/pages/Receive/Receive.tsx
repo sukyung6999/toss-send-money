@@ -1,4 +1,4 @@
-import { useNavigate, useSearchParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import Button from "../../components/Button";
 import Header from "../../layout/Header";
@@ -10,9 +10,8 @@ import { useRemittanceStore } from "../../../store/useRemittanceStore";
 import { RecentAccountType } from "../../../types/receive";
 
 const Receive = () => {
+  const {data} = useRemittanceStore();
   const navigate = useNavigate();
-  const [searchParams] = useSearchParams();
-  const amount = searchParams.get('amount');
   const selectedTabStyle = 'border-solid border-black border-b-[1px]'
 
   const [selectedTab, setSelectedTab] = useState('recentTab');
@@ -27,8 +26,10 @@ const Receive = () => {
     navigate('/completeCheck')
   }
 
+  if (data.amount === '0') return <p>페이지 정보가 갱신되었습니다. <br /> 뒤로 가기를 눌러 금액을 다시 입력해주세요.</p>
+
   return <div>
-    <Header title={`${amount ? ThousandsSeperator(amount) : '0'}원 받는 분 입력`} />
+    <Header title={`${ThousandsSeperator(data.amount)}원 받는 분 입력`} />
     <div role="tablist" aria-label="받을 분 선택" className="flex justify-between my-[20px]">
       <Button onClick={() => handleTabBtnClick('recentTab')} className={`w-1/3 h-[50px] ${selectedTab === 'recentTab' ? selectedTabStyle : ''}`} role="tab" aria-controls="recentContent" aria-selected={selectedTab === 'recentTab' ? true : false} id="recentTab" tabIndex={selectedTab === 'recentTab' ? 1 : 0}>최근</Button>
       <Button onClick={() => handleTabBtnClick('accountTab')} className={`w-1/3 h-[50px] ${selectedTab === 'accountTab' ? selectedTabStyle : ''}`} role="tab" aria-controls="accountContent" aria-selected={selectedTab === 'accountTab' ? true : false} id="accountTab" tabIndex={selectedTab === 'accountTab' ? 1 : 0}>계좌</Button>
