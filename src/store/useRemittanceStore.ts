@@ -11,7 +11,8 @@ const storeCreator: StateCreator<RemittanceStore> = (set) => ({
     amount: '0',
     payee: '',
     account: '',
-    bank: ''
+    bank: '',
+    tel: ''
   },
   setData: (newData) => {
     set((state) => ({

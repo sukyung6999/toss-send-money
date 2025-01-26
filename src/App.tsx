@@ -1,7 +1,7 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import './App.css'
 import Main from './assets/pages/Main/Main'
-import Amount from './assets/pages/Amount/Amout'
+import Amount from './assets/pages/Amount/Amount'
 import Receive from './assets/pages/Receive/Receive'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import Complete from './assets/pages/Complete/Complete'
