@@ -1,8 +1,9 @@
 import { useQuery } from "@tanstack/react-query";
 import { getContactAccountList } from "../../../../api/receive.api";
-import { ContactAccountType } from "../../../../types/receive";
+import { ContactAccountType, ReceiveContentProps } from "../../../../types/receive";
+import Button from "../../../components/Button";
 
-const ContactContent = () => {
+const ContactContent = ({onSubmitAccount}: ReceiveContentProps) => {
   const id = import.meta.env.VITE_USER_ID;
 
   const {data} = useQuery({
@@ -13,7 +14,10 @@ const ContactContent = () => {
   return <ul aria-label="연락처 목록">
     {
       data?.map((ele: ContactAccountType) => <li key={ele.id}>
-        <button type="submit">{ele.name} {ele.tel}</button>
+        <Button onClick={() => onSubmitAccount({
+          payee: ele.name,
+          tel: ele.tel
+        })}>{ele.name} {ele.tel}</Button>
       </li>)
     }
 </ul>

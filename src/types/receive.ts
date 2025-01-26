@@ -16,3 +16,15 @@ export type BankCodeType = {
   code: string,
   name: string
 }
+
+export type RemittanceType = {
+  amount: string,
+  payee: string,
+  account: string,
+  bank: string,
+  tel: string
+}
+
+export interface ReceiveContentProps {
+  onSubmitAccount: (data: Partial<RemittanceType>) => void
+}

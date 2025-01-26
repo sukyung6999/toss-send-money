@@ -7,6 +7,8 @@ const AccountInputContent = () => {
     queryKey: ['bank'],
     queryFn: () => getBanksList()
   })
+
+
   return <form action="">
   <select name="bank" id="bankList">
   <option value="은행선택">은행선택</option>

@@ -1,18 +1,22 @@
 import { useQuery } from "@tanstack/react-query";
 import Button from "../../../components/Button";
 import { getRecentAccountList } from "../../../../api/receive.api";
-import { RecentAccountType } from "../../../../types/receive";
+import { RecentAccountType, ReceiveContentProps } from "../../../../types/receive";
 
-const RecentContent = () => {
+const RecentContent = ({onSubmitAccount}: ReceiveContentProps) => {
   const userId = import.meta.env.VITE_USER_ID;
   const {data} = useQuery({
     queryKey: ['recent'],
     queryFn: () => getRecentAccountList(userId)
   })
-  console.log(data);
+  
   return <ul>
     {data?.map((ele: RecentAccountType) => <li key={ele.id}>
-    <Button>
+    <Button onClick={() => onSubmitAccount({
+      payee: ele.name,
+      bank: ele.bank,
+      account: ele.account
+    })}>
       {ele.name}
       {ele.bank} {ele.account}
     </Button>
