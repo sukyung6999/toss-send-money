@@ -1,4 +1,4 @@
-import { useSearchParams } from "react-router-dom";
+import { useNavigate, useSearchParams } from "react-router-dom";
 import { useState } from "react";
 import Button from "../../components/Button";
 import Header from "../../layout/Header";
@@ -6,8 +6,11 @@ import RecentContent from "./components/RecentContent";
 import ContactContent from "./components/ContactContent";
 import AccountInputContent from "./components/AccountInputContent";
 import ThousandsSeperator from "../../util/ThousandsSeperator";
+import { useRemittanceStore } from "../../../store/useRemittanceStore";
+import { RecentAccountType } from "../../../types/receive";
 
 const Receive = () => {
+  const navigate = useNavigate();
   const [searchParams] = useSearchParams();
   const amount = searchParams.get('amount');
   const selectedTabStyle = 'border-solid border-black border-b-[1px]'
@@ -15,6 +18,13 @@ const Receive = () => {
   const [selectedTab, setSelectedTab] = useState('recentTab');
   const handleTabBtnClick = (id: string) => {
     setSelectedTab(id);
+  }
+
+  const {setData} = useRemittanceStore();
+
+  const handleRecentAccountSubmit = (data: Partial<RecentAccountType>) => {
+    setData(data)
+    navigate('/completeCheck')
   }
 
   return <div>
@@ -25,14 +35,14 @@ const Receive = () => {
       <Button onClick={() => handleTabBtnClick('contactTab')} className={`w-1/3 h-[50px] ${selectedTab === 'contactTab' ? selectedTabStyle : ''}`} role="tab" aria-controls="contactContent" aria-selected={selectedTab === 'contactTab' ? true : false} id="contactTab" tabIndex={selectedTab === 'contactTab' ? 1 : 0}>연락처</Button>
     </div>
     <div id="recentContent" role="tabpanel" aria-labelledby="recentTab" className={`${selectedTab === 'recentTab' ? 'block' : 'hidden'}`} >
-      <RecentContent/>
+      <RecentContent onSubmitAccount={handleRecentAccountSubmit}/>
     </div>
     <div id="accountContent" role="tabpanel" aria-labelledby="accountTab" className={`${selectedTab === 'accountTab' ? 'block' : 'hidden'}`}  >
-      <AccountInputContent/>
+      <AccountInputContent onSubmitAccount={handleRecentAccountSubmit}/>
     </div>
     <div id="contactContent" role="tabpanel" aria-labelledby="contactTab" className={`${selectedTab === 'contactTab' ? 'block' : 'hidden'}`}  >
       <input type="search" name="contact" id="contactList" placeholder="연락처를 검색하거나 입력할 수 있습니다" className="block" />
-      <ContactContent/>
+      <ContactContent onSubmitAccount={handleRecentAccountSubmit}/>
     </div>
   </div>
 }

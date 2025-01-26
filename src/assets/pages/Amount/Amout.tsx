@@ -5,6 +5,7 @@ import Header from "../../layout/Header"
 import Button from "../../components/Button";
 import Keypad from "./components/Keypad";
 import ThousandsSeperator from "../../util/ThousandsSeperator";
+import { useRemittanceStore } from "../../../store/useRemittanceStore";
 
 const Amount = () => {
   const navigate = useNavigate();
@@ -40,6 +41,15 @@ const Amount = () => {
     });
   }, [])
 
+  const {setData} = useRemittanceStore();
+
+  const handleAmoutSend = () => {
+    setData({
+      amount
+    })
+    navigate(`/receive?amount=${amount}`)
+  }
+
   return <div>
     <Header title="송금"/>
     <div className="pt-[50px]">{ThousandsSeperator(amount)}원</div>
@@ -49,7 +59,7 @@ const Amount = () => {
         onDelete={handleDelete}
       />
     <div>
-      <Button onClick={() => navigate(`/receive?amount=${amount}`)} className="block mt-[30px] w-full h-[50px] bg-blue-600 rounded-md text-white">보내기</Button>
+      <Button onClick={() => handleAmoutSend()} className="block mt-[30px] w-full h-[50px] bg-blue-600 rounded-md text-white">보내기</Button>
     </div>
   </div>
 }
