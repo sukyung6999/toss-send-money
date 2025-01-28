@@ -12,13 +12,13 @@ const storeCreator: StateCreator<RemittanceStore> = (set) => ({
     payee: '',
     account: '',
     bank: '',
-    tel: ''
+    tel: '',
   },
   setData: (newData) => {
     set((state) => ({
-      data: { ...state.data, ...newData }
-    }))
-  }
+      data: { ...state.data, ...newData },
+    }));
+  },
 });
 
 export const useRemittanceStore = create<RemittanceStore>(storeCreator);
