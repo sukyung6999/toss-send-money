@@ -17,14 +17,14 @@ const RecentContent = ({ onSubmitAccount }: ReceiveContentProps) => {
           <Button
             onClick={() =>
               onSubmitAccount({
-                payee: ele.name,
-                bank: ele.bank,
+                accountHolder: ele.name,
+                bankCode: ele.bankCode,
                 account: ele.account,
               })
             }
           >
             {ele.name}
-            {ele.bank} {ele.account}
+            {ele.bankCode} {ele.account}
           </Button>
           <Button>즐겨찾기</Button>
         </li>

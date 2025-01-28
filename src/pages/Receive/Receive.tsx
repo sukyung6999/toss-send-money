@@ -1,4 +1,4 @@
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 import Button from '../../components/Button';
 import Header from '../../layout/Header';
@@ -29,7 +29,8 @@ const Receive = () => {
   if (data.amount === '0')
     return (
       <p>
-        페이지 정보가 갱신되었습니다. <br /> 뒤로 가기를 눌러 금액을 다시 입력해주세요.
+        페이지 정보가 갱신되었습니다. <br /> <Link to={'/amount'}>이전 페이지로</Link>로
+        돌아가주세요.
       </p>
     );
 

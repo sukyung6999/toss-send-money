@@ -9,9 +9,9 @@ interface RemittanceStore {
 const storeCreator: StateCreator<RemittanceStore> = (set) => ({
   data: {
     amount: '0',
-    payee: '',
+    accountHolder: '',
     account: '',
-    bank: '',
+    bankCode: '',
     tel: '',
   },
   setData: (newData) => {

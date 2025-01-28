@@ -18,7 +18,7 @@ const ContactContent = ({ onSubmitAccount }: ReceiveContentProps) => {
           <Button
             onClick={() =>
               onSubmitAccount({
-                payee: ele.name,
+                accountHolder: ele.name,
                 tel: ele.tel,
               })
             }
