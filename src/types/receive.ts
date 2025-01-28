@@ -1,7 +1,7 @@
 export type RecentAccountType = {
   id: string;
   name: string;
-  bank: string;
+  bankCode: string;
   account: string;
   bookmark: boolean;
 };
@@ -19,9 +19,9 @@ export type BankCodeType = {
 
 export type RemittanceType = {
   amount: string;
-  payee: string;
+  accountHolder: string;
   account: string;
-  bank: string;
+  bankCode: string;
   tel: string;
 };
 
