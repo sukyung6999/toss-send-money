@@ -10,6 +10,7 @@ const CompleteCheck = () => {
 
   const selectedBank = bankList.find((bank: BankCodeType) => bank.code === data.bankCode);
 
+  console.log(data);
   return (
     <div>
       <strong>
