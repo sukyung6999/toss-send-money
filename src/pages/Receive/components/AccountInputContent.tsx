@@ -1,7 +1,8 @@
-import { useMutation, useQuery } from '@tanstack/react-query';
-import { getAccountHolder, getBanksList } from '../../../api/receive.api';
+import { useMutation } from '@tanstack/react-query';
+import { getAccountHolder } from '../../../api/receive.api';
 import { BankCodeType, ReceiveContentProps } from '../../../types/receive';
 import { SubmitHandler, useForm } from 'react-hook-form';
+import { useBankList } from '../../../hooks/useBankList';
 
 type AccountFormProps = {
   bank: string;
@@ -9,35 +10,31 @@ type AccountFormProps = {
 };
 
 const AccountInputContent = ({ onSubmitAccount }: ReceiveContentProps) => {
-  const verifyyAccountMutation = useMutation({
-    mutationFn: ({ bank, accountNum }: AccountFormProps) => getAccountHolder(bank, accountNum),
-    onSuccess: (data) => {
-      // 성공 시 처리
-      // const newAccount = {
-      //   bankCode: data.bankCode,
-
-      // }
-      console.log(data);
-      onSubmitAccount(data);
-    },
-    onError: (error) => {
-      // 에러 처리
-      console.error('계좌 실명 조회 실패:', error);
-    },
-  });
-
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm<AccountFormProps>();
+
   const onSubmit: SubmitHandler<AccountFormProps> = async (data) => {
-    console.log(data);
     verifyyAccountMutation.mutate({ bank: data.bank, accountNum: data.accountNum });
   };
-  const { data } = useQuery({
-    queryKey: ['bank'],
-    queryFn: () => getBanksList(),
+
+  const { data: bankList } = useBankList();
+
+  const verifyyAccountMutation = useMutation({
+    mutationFn: ({ bank, accountNum }: AccountFormProps) => getAccountHolder(bank, accountNum),
+    onSuccess: (data, variables) => {
+      onSubmitAccount({
+        accountHolder: data.accountHolder,
+        bankCode: variables.bank,
+        account: variables.accountNum,
+      });
+    },
+    onError: (error) => {
+      // 에러 처리
+      console.error('계좌 실명 조회 실패:', error);
+    },
   });
 
   return (
@@ -54,7 +51,7 @@ const AccountInputContent = ({ onSubmitAccount }: ReceiveContentProps) => {
         })}
       >
         <option value="은행 선택">은행 선택</option>
-        {data?.map((ele: BankCodeType) => (
+        {bankList?.map((ele: BankCodeType) => (
           <option key={ele.code} value={ele.code}>
             {ele.name}
           </option>
