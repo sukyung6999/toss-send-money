@@ -37,9 +37,10 @@ const AccountInputContent = ({ onSubmitAccount }: ReceiveContentProps) => {
 
   return (
     <div className="relative">
-      <form onSubmit={handleSubmit(onSubmit)}>
+      <form onSubmit={handleSubmit(onSubmit)} className="text-[20px]">
         {verifyAccountMutation.isPending && <LoadingSpinner loadingTxt="송금 계좌 조회중" />}
         <select
+          className="w-full"
           {...register('bank', {
             required: '은행을 선택해주세요.',
             validate: (value) => {
@@ -57,19 +58,26 @@ const AccountInputContent = ({ onSubmitAccount }: ReceiveContentProps) => {
             </option>
           ))}
         </select>
-        <p>{errors.bank?.message}</p>
+        <p className="my-[15px] text-red-500 text-[15px] text-left font-bold">
+          {errors.bank?.message}
+        </p>
         <input
           type="tel"
           id="accountNum"
           placeholder="계좌번호 입력"
           inputMode="numeric"
+          className="block w-full"
           {...register('accountNum', {
             required: '계좌번호를 입력해주세요.',
             minLength: { value: 11, message: '계좌번호를 올바르게 입력해주세요.' },
           })}
         />
-        <p>{errors.accountNum?.message}</p>
-        <button>확인</button>
+        <p className="my-[15px] text-red-500 text-[15px] text-left font-bold">
+          {errors.accountNum?.message}
+        </p>
+        <button className="fixed bottom-0 left-0 w-full py-[20px] bg-blue-600 text-white font-bold">
+          확인
+        </button>
       </form>
       {verifyAccountMutation.isError && (
         <Alert tit="계좌 조회 실패!" txt="입력하신 계좌는 존재하지 않습니다." />

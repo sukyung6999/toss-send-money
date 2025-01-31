@@ -94,13 +94,6 @@ const Receive = () => {
         aria-labelledby="contactTab"
         className={`${selectedTab === 'contactTab' ? 'block' : 'hidden'}`}
       >
-        <input
-          type="search"
-          name="contact"
-          id="contactList"
-          placeholder="연락처를 검색하거나 입력할 수 있습니다"
-          className="block"
-        />
         <ContactContent onSubmitAccount={handleRecentAccountSubmit} />
       </div>
     </div>
