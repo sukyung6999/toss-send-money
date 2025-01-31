@@ -2,8 +2,10 @@ export type RecentAccountType = {
   id: string;
   name: string;
   bankCode: string;
+  bankName: string;
   account: string;
   bookmark: boolean;
+  tel: string;
 };
 
 export type ContactAccountType = {
