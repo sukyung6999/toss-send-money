@@ -2,7 +2,7 @@ import { useNavigate } from 'react-router-dom';
 import Button from '../components/Button';
 
 interface HeaderProps {
-  title: string;
+  title?: string;
 }
 
 const Header = ({ title }: HeaderProps) => {
