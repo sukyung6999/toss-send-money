@@ -59,6 +59,7 @@ const ContactContent = ({ onSubmitAccount }: ReceiveContentProps) => {
               </li>
             )
         )}
+      />
       </ul>
     </>
   );
